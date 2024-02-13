@@ -1,10 +1,9 @@
 # Password Strength Evaluator
 
-![GitHub repo size](https://img.shields.io/github/repo-size/your_username/repo_name)
-![GitHub contributors](https://img.shields.io/github/contributors/your_username/repo_name)
-![GitHub stars](https://img.shields.io/github/stars/your_username/repo_name?style=social)
-![GitHub forks](https://img.shields.io/github/forks/your_username/repo_name?style=social)
-![Twitter Follow](https://img.shields.io/twitter/follow/your_twitter?style=social)
+![GitHub repo size](https://img.shields.io/github/repo-size/lbustio/password_strength_evaluator)
+![GitHub contributors](https://img.shields.io/github/contributors/lbustio/password_strength_evaluator)
+![GitHub stars](https://img.shields.io/github/stars/lbustio/password_strength_evaluator?style=social)
+![GitHub forks](https://img.shields.io/github/forks/lbustio/password_strength_evaluator?style=social)
 
 Evaluate the strength of passwords in a given dataset efficiently using multiprocessing and entropy calculation.
 
