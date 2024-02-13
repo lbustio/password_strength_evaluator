@@ -1,6 +1,8 @@
 import logging
 import multiprocessing
 import os
+import math
+from collections import Counter
 
 import pandas as pd
 import passwordmeter
@@ -44,6 +46,31 @@ def save_data(data, path, encoding='utf-8'):
         logging.error(f'Error saving data to {path}: {e}')
 
 
+def calculate_entropy(string):
+    """
+    Calculate the entropy of a given string.
+
+    Args:
+    string (str): The input string for which entropy needs to be calculated.
+
+    Returns:
+    float: The entropy value of the input string.
+    """
+    # Count the frequency of each character
+    frequency = Counter(string)
+    # Calculate the entropy
+    entropy = 0.0
+    string_length = len(string)
+    for freq in frequency.values():
+        # Calculate the probability of each character
+        probability = freq / string_length
+        # Calculate the entropy if probability is not zero
+        if probability != 0:
+            entropy += probability * math.log2(probability)
+
+    return -entropy
+
+
 def evaluate_password(password, strength_threshold):
     """
     Evaluate the strength of a single password.
@@ -58,7 +85,8 @@ def evaluate_password(password, strength_threshold):
     try:
         strength, _ = passwordmeter.test(password)
         strength_label = "weak" if strength < strength_threshold else "strong"
-        return {"password": password, "strength": strength, "label": strength_label}
+        entropy = calculate_entropy(password)
+        return {"password": password, "entropy": entropy, "strength": strength, "label": strength_label}
     except Exception as e:
         logging.warning(f'Error evaluating password: {e}. Skipping password: {password}')
         return None
